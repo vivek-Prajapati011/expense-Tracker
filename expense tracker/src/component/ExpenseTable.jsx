@@ -3,7 +3,7 @@ import React from 'react'
 function ExpenseTable() {
   return (
    <>
-    <table class="expense-table">
+    <table className="expense-table">
           <thead>
             <tr>
               <th>Title</th>
@@ -17,14 +17,14 @@ function ExpenseTable() {
                   <option value="medicine">Medicine</option>
                 </select>
               </th>
-              <th class="amount-column">
+              <th className="amount-column">
                 <div>
                   <span>Amount</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="10"
                     viewBox="0 0 384 512"
-                    class="arrow up-arrow"
+                    className="arrow up-arrow"
                   >
                     <title>Ascending</title>
                     <path
@@ -35,7 +35,7 @@ function ExpenseTable() {
                     xmlns="http://www.w3.org/2000/svg"
                     width="10"
                     viewBox="0 0 384 512"
-                    class="arrow down-arrow"
+                    className="arrow down-arrow"
                   >
                     <title>Descending</title>
                     <path
