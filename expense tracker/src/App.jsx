@@ -4,14 +4,15 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import ExpenseForm from './component/ExpenseForm'
 import ExpenseTable from './component/ExpenseTable'
+import expenseData from './component/expenseData'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [expenses, setexpenses] = useState(expenseData)
 
   return (
     <>
      <ExpenseForm />
-     <ExpenseTable />
+     <ExpenseTable expenses={expenses} />
     </>
   )
 }
