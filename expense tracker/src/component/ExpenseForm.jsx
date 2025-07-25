@@ -1,12 +1,26 @@
 import React from 'react'
 
 function ExpenseForm() {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+  }
+
+  const getFormData = (form) => {
+    const formData = new formData(form)
+    const data = {}
+    for(const[key, value] of formData.entries()){
+      data[key] = value
+
+    }
+    return data
+
+  }
   return (
    <>
     <main>
       <h1>Track Your Expense</h1>
       <div className="expense-tracker">
-        <form className="expense-form">
+        <form className="expense-form" onSubmit={handleSubmit}>
           <div className="input-container">
             <label htmlFor="title">Title</label>
             <input id="title" />
