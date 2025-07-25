@@ -1,12 +1,15 @@
 import React from 'react'
 
-function ExpenseForm() {
+function ExpenseForm({setexpenses}) {
   const handleSubmit = (e) => {
     e.preventDefault()
+    const exp = {...getFormData(e.target), id:crypto.randomUUID()}
+    setexpenses((prevState) => [...prevState, exp]) 
+    e.target.reset()
   }
 
   const getFormData = (form) => {
-    const formData = new formData(form)
+    const formData = new FormData(form)
     const data = {}
     for(const[key, value] of formData.entries()){
       data[key] = value
@@ -23,11 +26,11 @@ function ExpenseForm() {
         <form className="expense-form" onSubmit={handleSubmit}>
           <div className="input-container">
             <label htmlFor="title">Title</label>
-            <input id="title" />
+            <input id="title" name='title' />
           </div>
           <div className="input-container">
             <label htmlFor="category">Category</label>
-            <select id='category'>
+            <select id='category' name='category'>
                   <option value="" hidden>All</option>
                   <option value="grocery">Grocery</option>
                   <option value="clothes">Clothes</option>
@@ -38,7 +41,7 @@ function ExpenseForm() {
           </div>
           <div className="input-container">
             <label htmlFor="amount">Amount</label>
-            <input id="amount" />
+            <input id="amount"  name='amount'/>
           </div>
           <button className="add-btn">Add</button>
         </form>
