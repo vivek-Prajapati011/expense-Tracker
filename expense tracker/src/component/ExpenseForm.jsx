@@ -4,7 +4,7 @@ function ExpenseForm({setexpenses}) {
  // const[title,setTitle] = useState("")
  // const[category,setCategory] = useState("")
  // const[amount,setAmount] = useState("")
-  const[expense, setexpenses] = useState({
+  const[expense, setExpense] = useState({
     title : "",
     category : "",
     amount :""
@@ -12,11 +12,15 @@ function ExpenseForm({setexpenses}) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const exp = {title, category, amount, id: crypto.randomUUID()}
-    setexpenses((prevState) => [...prevState, exp])
-    setTitle("")
-    setCategory("")
-    setAmount("")
+    
+    setexpenses((prevState) => [...prevState, {...expense, id: crypto.randomUUID() }])
+    
+    setExpense({
+    title : "",
+    category : "",
+    amount :""
+  })
+    
     
   }
 
@@ -30,15 +34,15 @@ function ExpenseForm({setexpenses}) {
           <div className="input-container">
             <label htmlFor="title">Title</label>
             <input id="title" name='title' 
-            value={title} 
-            onChange = {(e) => setTitle(e.target.value)} />
+            value={expense.title} 
+            onChange = {(e) => setExpense((prevState) => ({...prevState, title: e.target.value}))} />
           </div>
           <div className="input-container">
             <label htmlFor="category">Category</label>
             <select id='category' 
              name='category'
-             value={category}
-             onChange={(e) => setCategory(e.target.value)}
+             value={expense.category}
+             onChange = {(e) => setExpense((prevState) => ({...prevState, category: e.target.value}))}
              >
                   <option value="" hidden>All</option>
                   <option value="grocery">Grocery</option>
@@ -52,8 +56,8 @@ function ExpenseForm({setexpenses}) {
             <label htmlFor="amount">Amount</label>
             <input id="amount"  
             name='amount' 
-            value={amount} 
-            onChange={(e) => setAmount(e.target.value)}/>
+            value={expense.amount} 
+           onChange = {(e) => setExpense((prevState) => ({...prevState, amount: e.target.value}))}/>
           </div>
           <button className="add-btn">Add</button>
         </form>
