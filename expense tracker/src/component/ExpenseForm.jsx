@@ -10,8 +10,31 @@ function ExpenseForm({setexpenses}) {
     amount :""
   })
 
+  const[error, setError] = useState({}) 
+
+  const validate = (formData) => {
+    const errorData = {}
+    if(!formData.title) {
+     errorData.title =" Title is required"
+    }
+
+    if(!formData.category) {
+     errorData.category =" category is required"
+    }
+
+    if(!formData.amount) {
+     errorData.amount =" amount is required"
+    }
+    setError(errorData)
+    return errorData
+
+  }
+
+
   const handleSubmit = (e) => {
     e.preventDefault()
+    const validateResult = validate(expense)
+    if(Object.keys(validateResult).length) return
     
     setexpenses((prevState) => [...prevState, {...expense, id: crypto.randomUUID() }])
     
@@ -27,7 +50,7 @@ function ExpenseForm({setexpenses}) {
 const handleChange = (e) => {
   const {name, value} = e.target.value
   setExpense((prevState) => ({
-    ...prevState, [name]: e.target.value
+    ...prevState, [name]: value
   }))
 
 }  
