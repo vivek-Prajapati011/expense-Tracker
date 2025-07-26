@@ -52,7 +52,7 @@ const handleChange = (e) => {
   setExpense((prevState) => ({
     ...prevState, [name]: value
   }))
-
+setError({})
 }  
   return (
    <>
