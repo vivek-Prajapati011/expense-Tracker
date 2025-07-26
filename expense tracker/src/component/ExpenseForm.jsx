@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 
 function ExpenseForm({setexpenses}) {
-  const[title,setTitle] = useState("")
-  const[category,setCategory] = useState("")
-  const[amount,setAmount] = useState("")
+ // const[title,setTitle] = useState("")
+ // const[category,setCategory] = useState("")
+ // const[amount,setAmount] = useState("")
+  const[expense, setexpenses] = useState({
+    title : "",
+    category : "",
+    amount :""
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault()
