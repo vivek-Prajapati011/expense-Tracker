@@ -65,7 +65,9 @@ const handleChange = (e) => {
             <input id="title" name='title' 
             value={expense.title} 
             onChange = {handleChange} />
+            
           </div>
+          <p className='err'>{error.title}</p>
           <div className="input-container">
             <label htmlFor="category">Category</label>
             <select id='category' 
