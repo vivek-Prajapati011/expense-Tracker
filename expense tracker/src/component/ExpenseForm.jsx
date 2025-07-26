@@ -48,7 +48,7 @@ function ExpenseForm({setexpenses}) {
   }
 
 const handleChange = (e) => {
-  const {name, value} = e.target.value
+  const {name, value} = e.target
   setExpense((prevState) => ({
     ...prevState, [name]: value
   }))
@@ -65,9 +65,9 @@ setError({})
             <input id="title" name='title' 
             value={expense.title} 
             onChange = {handleChange} />
-            
+           <p className='err'>{error.title}</p> 
           </div>
-          <p className='err'>{error.title}</p>
+         
           <div className="input-container">
             <label htmlFor="category">Category</label>
             <select id='category' 
@@ -82,14 +82,18 @@ setError({})
                   <option value="education">Education</option>
                   <option value="medicine">Medicine</option>
              </select>
+             <p className='err'>{error.category}</p>
           </div>
+           
           <div className="input-container">
             <label htmlFor="amount">Amount</label>
             <input id="amount"  
             name='amount' 
             value={expense.amount} 
            onChange = {handleChange}/>
+           <p className='err'>{error.amount}</p>
           </div>
+           
           <button className="add-btn">Add</button>
         </form>
        
