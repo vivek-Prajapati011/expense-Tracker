@@ -4,8 +4,14 @@ function ExpenseForm({setexpenses}) {
   const[title,setTitle] = useState("")
   const[category,setCategory] = useState("")
   const[amount,setAmount] = useState("")
+
   const handleSubmit = (e) => {
     e.preventDefault()
+    const exp = {title, category, amount, id: crypto.randomUUID()}
+    setexpenses((prevState) => [...prevState, exp])
+    setTitle("")
+    setCategory("")
+    setAmount("")
     
   }
 
@@ -20,14 +26,14 @@ function ExpenseForm({setexpenses}) {
             <label htmlFor="title">Title</label>
             <input id="title" name='title' 
             value={title} 
-            onChange = {(e) => {setTitle(e.target.value)}} />
+            onChange = {(e) => setTitle(e.target.value)} />
           </div>
           <div className="input-container">
             <label htmlFor="category">Category</label>
             <select id='category' 
              name='category'
              value={category}
-             onChange={(e) => {(e) => {setCategory(e.target.value)}}}
+             onChange={(e) => setCategory(e.target.value)}
              >
                   <option value="" hidden>All</option>
                   <option value="grocery">Grocery</option>
@@ -42,7 +48,7 @@ function ExpenseForm({setexpenses}) {
             <input id="amount"  
             name='amount' 
             value={amount} 
-            onChange={(e) => {setAmount(e.target.value)}}/>
+            onChange={(e) => setAmount(e.target.value)}/>
           </div>
           <button className="add-btn">Add</button>
         </form>
