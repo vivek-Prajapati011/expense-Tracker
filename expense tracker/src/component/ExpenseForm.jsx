@@ -14,19 +14,34 @@ function ExpenseForm({setexpenses}) {
 
   const[error, setError] = useState({}) 
 
+  const validationConfig = {
+    title:[
+      {require: true, message: "please entre title"}, 
+      {minLenght: 5, message:"title should be atleast five character "}
+    ],
+    category:[{require: true, message: "please entre category"}],
+    amount:[{require: true, message: "please entre amount"}]
+  }
+
+
   const validate = (formData) => {
     const errorData = {}
-    if(!formData.title) {
-     errorData.title =" Title is required"
-    }
+    Object.entries(formData).forEach(([key,value]) => {
+      validationConfig[key].some((rule) => {
+        if(rule.require && !value){
+          errorData[key] = rule.message
+          return true
+        }
+         if(rule.minLenght && value.length < 5){
+          errorData[key] = rule.message
+          return true
+        }
+      }
+       
+    )
 
-    if(!formData.category) {
-     errorData.category =" category is required"
-    }
-
-    if(!formData.amount) {
-     errorData.amount =" amount is required"
-    }
+    })
+    
     setError(errorData)
     return errorData
 
@@ -80,6 +95,8 @@ setError({})
            value={expense.category} 
            onChange = {handleChange}
            error = {error.category}
+            defaultOption = "Select Category "
+           options = {["Grocery","Clothes", "Bills","Education","Medicine"]}
           
           />
            
@@ -90,8 +107,7 @@ setError({})
            value={expense.amount} 
            onChange = {handleChange}
            error = {error.amount}
-           defaultOption = "Select Category "
-           option = {[Grocery,Clothes, Bills,Education,Medicine]}
+          
           
            />
            
