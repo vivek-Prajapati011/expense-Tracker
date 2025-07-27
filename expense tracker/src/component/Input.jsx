@@ -8,7 +8,7 @@ function Input({id, label, name, title, value, onChange, error }) {
             <input id={id} name={name} 
             value={value} 
             onChange = {onChange} />
-           <p className='err'>{error.title}</p> 
+           <p className='err'>{error}</p> 
           </div>
     </>
   )
