@@ -1,6 +1,11 @@
 import React from 'react'
 
 function ExpenseTable({expenses}) {
+
+  const [category, setCategory] = useState("")
+  const filterData = expense.filter((expense) => {
+    return expense.category.toLowerCase().include(category)
+  }) 
   return (
    <>
     <table className="expense-table">
@@ -8,7 +13,7 @@ function ExpenseTable({expenses}) {
             <tr>
               <th>Title</th>
               <th>
-                <select>
+                <select onChange={(e) => setCategory(e.target.value.toLowerCase)}>
                   <option value="">All</option>
                   <option value="grocery">Grocery</option>
                   <option value="clothes">Clothes</option>
@@ -53,7 +58,7 @@ function ExpenseTable({expenses}) {
               <td>₹40</td>
             </tr>
             {
-              expenses.map(({id, title, category, amount}) => {
+              filterData.map(({id, title, category, amount}) => {
                return (
                
                 <tr key={id}>
