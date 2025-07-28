@@ -1,11 +1,11 @@
 import React from 'react'
+import useFilter from '../hooks/useFilter'
 
 function ExpenseTable({expenses}) {
 
   const [category, setCategory] = useState("")
-  const filterData = expense.filter((expense) => {
-    return expense.category.toLowerCase().include(category)
-  }) 
+  const[filterData, setQuery] = useFilter()
+  
   return (
    <>
     <table className="expense-table">
