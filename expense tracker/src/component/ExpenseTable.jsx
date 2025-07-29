@@ -57,11 +57,7 @@ function ExpenseTable({expenses}) {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Milk</td>
-              <td>Grocery</td>
-              <td>₹40</td>
-            </tr>
+            
             {
               filterData.map(({id, title, category, amount}) => {
                return (
