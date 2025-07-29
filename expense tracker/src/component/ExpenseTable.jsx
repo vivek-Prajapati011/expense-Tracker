@@ -1,11 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
 import useFilter from '../hooks/useFilter'
+import CoontextMenu from "./CoontextMenu"
 
 function ExpenseTable({expenses}) {
 
   const [category, setCategory] = useState("")
   const [filterData, setQuery] = useFilter(expenses, (data) => data.category )
+  const [menuPosition, setMenuPosition] = useState({})
 
   const total = filterData.reduce ((accumlator, current) => accumlator + current.amount, 0)
 
@@ -13,6 +15,7 @@ function ExpenseTable({expenses}) {
   
   return (
    <>
+   <CoontextMenu  menuPosition={menuPosition} />
     <table className="expense-table">
           <thead>
             <tr>
@@ -62,7 +65,12 @@ function ExpenseTable({expenses}) {
               filterData.map(({id, title, category, amount}) => {
                return (
                
-                <tr key={id}>
+                <tr 
+                key={id}
+                onContextMenu={(e) => {
+                  e.preventDefault()
+                  setMenuPosition({left:e.clientX + 4, top:e.clientY  +4})
+                }}>
                   <td>{title}</td>
                   <td>{category}</td>
                   <td>{amount}</td>
