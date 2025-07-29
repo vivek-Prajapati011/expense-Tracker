@@ -12,7 +12,7 @@ function App() {
   return (
     <>
      <ExpenseForm setexpenses = {setexpenses} />
-     <ExpenseTable expenses={expenses} />
+     <ExpenseTable expenses={expenses} setexpenses ={setexpenses}  />
     </>
   )
 }
