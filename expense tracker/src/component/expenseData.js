@@ -10,16 +10,17 @@ export default [
         title: "shirt",
         category: "clothes", 
         amount:40
-    },{
+    },
+    {
         id: crypto.randomUUID(),
         title: "vegitable",
         category: "grocery", 
         amount:40
     },
-{
+   {  
         id: crypto.randomUUID(),
         title: "electricitybill",
-        category: "Bill", 
+        category: "bill", 
         amount:40
     },
 
