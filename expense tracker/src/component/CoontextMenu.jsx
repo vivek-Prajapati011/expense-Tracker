@@ -1,9 +1,9 @@
 import React from 'react'
 
-function CoontextMenu() {
+function CoontextMenu({menuPosition}) {
   return (
     <>
-       <div class="context-menu">
+       <div className="context-menu" style={menuPosition}>
             <div>Edit</div>
             <div>Delete</div>
         </div>
