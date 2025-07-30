@@ -1,20 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import ExpenseForm from './component/ExpenseForm'
-import ExpenseTable from './component/ExpenseTable'
-import expenseData from './component/expenseData'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import ExpenseForm from "./component/ExpenseForm";
+import ExpenseTable from "./component/ExpenseTable";
+import expenseData from "./component/expenseData";
 
 function App() {
-  const [expenses, setexpenses] = useState(expenseData)
+  const [expense, setExpense] = useState({
+    title: "",
+    category: "",
+    amount: "",
+  });
+  const [expenses, setexpenses] = useState(expenseData);
 
   return (
     <>
-     <ExpenseForm setexpenses = {setexpenses} />
-     <ExpenseTable expenses={expenses} setexpenses ={setexpenses}  />
+      <ExpenseForm
+        setexpenses={setexpenses}
+        expense={expense}
+        setExpense={setExpense}
+      />
+      <ExpenseTable
+        expenses={expenses}
+        setexpenses={setexpenses}
+        expense={expense}
+        setExpense={setExpense}
+      />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
