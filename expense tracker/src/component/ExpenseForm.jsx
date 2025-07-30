@@ -16,7 +16,16 @@ function ExpenseForm({setexpenses,setExpense,expense,editingRowId,setEditingRowI
       {minLenght: 5, message:"title should be atleast five character "}
     ],
     category:[{require: true, message: "please entre category"}],
-    amount:[{require: true, message: "please entre amount"}]
+    amount: [
+      {
+        required: true,
+        message: 'Please enter an amount',
+      },
+      {
+        pattern: /^[1-9]\d*(\.\d+)?$/,
+        message: 'Please enter a valid number',
+      },
+    ],
   }
 
 
@@ -29,6 +38,10 @@ function ExpenseForm({setexpenses,setExpense,expense,editingRowId,setEditingRowI
           return true
         }
          if(rule.minLenght && value.length < 5){
+          errorData[key] = rule.message
+          return true
+        }
+         if (rule.pattern && !rule.pattern.test(value)) {
           errorData[key] = rule.message
           return true
         }
