@@ -13,6 +13,7 @@ function App() {
     amount: "",
   });
   const [expenses, setexpenses] = useState(expenseData);
+  const[editingRowId, setEditingRowId] = useState("")
 
   return (
     <>
@@ -20,12 +21,14 @@ function App() {
         setexpenses={setexpenses}
         expense={expense}
         setExpense={setExpense}
+        editingRowId={editingRowId}
       />
       <ExpenseTable
         expenses={expenses}
         setexpenses={setexpenses}
         expense={expense}
         setExpense={setExpense}
+        setEditingRowId={setEditingRowId}
       />
     </>
   );
