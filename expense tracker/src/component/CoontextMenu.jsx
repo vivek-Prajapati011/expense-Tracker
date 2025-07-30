@@ -13,18 +13,18 @@ function CoontextMenu({
   return (
     <>
       <div className="context-menu" style={{ ...menuPosition }}>
-        <div 
+         <div
         onClick={() => {
-          const {title, amount, category} = expenses.find(
-            (expense) =>  expense.id === rowId
+          const { title, category, amount } = expenses.find(
+            (expense) => expense.id === rowId
           )
           setEditingRowId(rowId)
-          setExpense({title, amount, category})
+          setExpense({ title, category, amount })
           setMenuPosition({})
         }}
-          >
-            Edit
-            </div>
+      >
+        Edit
+      </div>
         <div
           onClick={() => {
             setexpenses((prevState) =>
