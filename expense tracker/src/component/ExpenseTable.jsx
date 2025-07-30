@@ -3,7 +3,7 @@ import { useState } from "react";
 import useFilter from "../hooks/useFilter";
 import CoontextMenu from "./CoontextMenu";
 
-function ExpenseTable({ expenses, setexpenses, setExpense }) {
+function ExpenseTable({ expenses, setexpenses, setExpense,setEditingRowId }) {
   const [category, setCategory] = useState("");
   const [filterData, setQuery] = useFilter(expenses, (data) => data.category);
   const [menuPosition, setMenuPosition] = useState({});
@@ -23,6 +23,7 @@ function ExpenseTable({ expenses, setexpenses, setExpense }) {
         rowId={rowId}
         setExpense={setExpense}
         setEditingRowId={setEditingRowId}
+        expenses={expenses}
       />
       <table className="expense-table" onClick={() => setMenuPosition({})}>
         <thead>
