@@ -2,15 +2,11 @@ import React, { useState } from 'react'
 import Input from './Input'
 import Select from './Select'
 
-function ExpenseForm({setexpenses}) {
+function ExpenseForm({setexpenses,setExpense,expense }) {
  // const[title,setTitle] = useState("")
  // const[category,setCategory] = useState("")
  // const[amount,setAmount] = useState("")
-  const[expense, setExpense] = useState({
-    title : "",
-    category : "",
-    amount :""
-  })
+ 
 
   const[error, setError] = useState({}) 
 

@@ -1,10 +1,16 @@
 import React from "react";
 
-function CoontextMenu({ menuPosition, setMenuPosition, setexpenses,  rowId }) {
+function CoontextMenu({
+   menuPosition,
+   setMenuPosition,
+   setexpenses, 
+   rowId, 
+   setExpense 
+  }) {
   if (!menuPosition.left || !menuPosition.top) return null;
   return (
     <>
-      <div className="context-menu" style={{...menuPosition}}>
+      <div className="context-menu" style={{ ...menuPosition }}>
         <div onClick={() => setMenuPosition({})}>Edit</div>
         <div
           onClick={() => {
