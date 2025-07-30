@@ -22,6 +22,7 @@ function ExpenseTable({ expenses, setexpenses, setExpense }) {
         setexpenses={setexpenses}
         rowId={rowId}
         setExpense={setExpense}
+        setEditingRowId={setEditingRowId}
       />
       <table className="expense-table" onClick={() => setMenuPosition({})}>
         <thead>
