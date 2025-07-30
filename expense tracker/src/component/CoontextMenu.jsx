@@ -7,6 +7,7 @@ function CoontextMenu({
   rowId,
   expenses,
   setExpense,
+  setEditingRowId
 }) {
   if (!menuPosition.left || !menuPosition.top) return null;
   return (
@@ -17,6 +18,7 @@ function CoontextMenu({
           const {title, amount, category} = expenses.find(
             (expense) =>  expense.id === rowId
           )
+          setEditingRowId(rowId)
           setExpense({title, amount, category})
           setMenuPosition({})
         }}
