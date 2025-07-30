@@ -22,6 +22,7 @@ function App() {
         expense={expense}
         setExpense={setExpense}
         editingRowId={editingRowId}
+        setEditingRowId={setEditingRowId}
       />
       <ExpenseTable
         expenses={expenses}

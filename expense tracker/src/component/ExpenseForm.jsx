@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Input from './Input'
 import Select from './Select'
 
-function ExpenseForm({setexpenses,setExpense,expense,editingRowId }) {
+function ExpenseForm({setexpenses,setExpense,expense,editingRowId,setEditingRowId }) {
  // const[title,setTitle] = useState("")
  // const[category,setCategory] = useState("")
  // const[amount,setAmount] = useState("")
@@ -48,6 +48,24 @@ function ExpenseForm({setexpenses,setExpense,expense,editingRowId }) {
     e.preventDefault()
     const validateResult = validate(expense)
     if(Object.keys(validateResult).length) return
+
+       if (editingRowId) {
+      setexpenses((prevState) =>
+        prevState.map((prevExpense) => {
+          if (prevExpense.id === editingRowId) {
+            return { ...expense, id: editingRowId }
+          }
+          return prevExpense
+        })
+      )
+      setExpense({
+        title: '',
+        category: '',
+        amount: '',
+      })
+      setEditingRowId('')
+      return
+    }
     
     setexpenses((prevState) => [...prevState, {...expense, id: crypto.randomUUID() }])
     
