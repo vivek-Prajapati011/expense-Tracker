@@ -25,7 +25,14 @@ function ExpenseTable({ expenses, setexpenses, setExpense,setEditingRowId }) {
         setEditingRowId={setEditingRowId}
         expenses={expenses}
       />
-      <table className="expense-table" onClick={() => setMenuPosition({})}>
+      <table className="expense-table" onClick={ () => {
+         if(menuPosition.left){
+          setMenuPosition({})
+
+        }
+      }
+       
+      }>
         <thead>
           <tr>
             <th>Title</th>
