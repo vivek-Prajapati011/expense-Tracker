@@ -3,11 +3,12 @@ import { useState } from "react";
 import useFilter from "../hooks/useFilter";
 import CoontextMenu from "./CoontextMenu";
 
-function ExpenseTable({ expenses, setexpenses, setExpense,setEditingRowId }) {
+function ExpenseTable({ expenses, setexpenses, setExpense, setEditingRowId }) {
   const [category, setCategory] = useState("");
   const [filterData, setQuery] = useFilter(expenses, (data) => data.category);
   const [menuPosition, setMenuPosition] = useState({});
   const [rowId, setRowId] = useState("");
+  const [sortCallback, setSortCallback] = useState(() => () => {});
 
   const total = filterData.reduce(
     (accumlator, current) => accumlator + parseInt(current.amount),
@@ -25,14 +26,14 @@ function ExpenseTable({ expenses, setexpenses, setExpense,setEditingRowId }) {
         setEditingRowId={setEditingRowId}
         expenses={expenses}
       />
-      <table className="expense-table" onClick={ () => {
-         if(menuPosition.left){
-          setMenuPosition({})
-
-        }
-      }
-       
-      }>
+      <table
+        className="expense-table"
+        onClick={() => {
+          if (menuPosition.left) {
+            setMenuPosition({});
+          }
+        }}
+      >
         <thead>
           <tr>
             <th>Title</th>
@@ -91,7 +92,14 @@ function ExpenseTable({ expenses, setexpenses, setExpense,setEditingRowId }) {
 
           <tr>
             <th>Total</th>
-            <th></th>
+            <th
+              className="clear-sort"
+              onClick={() => {
+                setSortCallback(() => () => {});
+              }}
+            >
+              clear sort
+            </th>
             <th>₹{total}</th>
           </tr>
         </tbody>
