@@ -126,6 +126,9 @@ main {
     color: red;
     position: absolute;
     top: 80%;
+} 
+.clear-sort{
+    cursor: pointer;
 }
 
 @media (max-width: 900px) {
