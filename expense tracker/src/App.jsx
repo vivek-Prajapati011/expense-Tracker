@@ -8,13 +8,13 @@ import expenseData from "./component/expenseData";
 import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
-  const [expense, setExpense] = useLocalStorage({
+  const [expense, setExpense] = useLocalStorage("expense",{
     title: "",
     category: "",
     amount: "",
   });
-  const [expenses, setexpenses] = useLocalStorage(expenseData);
-  const[editingRowId, setEditingRowId] = useLocalStorage("")
+  const [expenses, setexpenses] = useLocalStorage("expenses",expenseData);
+  const[editingRowId, setEditingRowId] = useLocalStorage("editingRowId", "")
 
   return (
     <>
