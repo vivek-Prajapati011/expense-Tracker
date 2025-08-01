@@ -4,9 +4,10 @@ import React from 'react'
 
 function useLocalStorage(key, initialvalue) {
     const[data,setData] = useState(initialvalue)
-    const existingData = JSON.parse(localStorage.getItem(key))
+    
 
   useEffect(() =>{
+     const existingData = JSON.parse(localStorage.getItem(key))
       if(existingData){
       setData(existingData)
     }else{
