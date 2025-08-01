@@ -60,7 +60,7 @@ function ExpenseTable({ expenses, setexpenses, setExpense, setEditingRowId }) {
                   className="arrow down-arrow"
                  onClick={() => {
                     setSortCallback(
-                      () => (a, b) => a.title.localeCompare(b.title)
+                      () => (a, b) => b.title.localeCompare(a.title)
                     )
                   }}
                 >
@@ -88,7 +88,7 @@ function ExpenseTable({ expenses, setexpenses, setExpense, setEditingRowId }) {
                   viewBox="0 0 384 512"
                   className="arrow up-arrow"
                   onClick={() => {
-                    setSortCallback(() => (a, b) => b.amount - a.amount);
+                    setSortCallback(() => (a, b) => a.amount - b.amount);
                   }}
                 >
                   <title>Ascending</title>
