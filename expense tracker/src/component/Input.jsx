@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Input({id, label, name, title, value, onChange, error }) {
+function Input({id, label, name,  value, onChange, error }) {
   return (
     <>
     <div className="input-container">
