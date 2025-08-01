@@ -1,142 +1,398 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Nunito:wght@300;400;600;700;800;900&family=Russo+One&family=Spartan:wght@700;800;900&display=swap");
+/* Base Styles */
+:root {
+  --bg-dark: #0f0f1a;
+  --bg-darker: #0a0a12;
+  --primary: #ff4d89;
+  --secondary: #6c5ce7;
+  --accent: #00ceff;
+  --text-primary: #f8f8f8;
+  --text-secondary: #b8b8c0;
+  --border-color: #2a2a3a;
+  --success: #00e676;
+  --danger: #ff3d57;
+  --warning: #ffaa00;
+  --card-bg: #1a1a2a;
+  --hover-bg: #252538;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
 
 body {
-    font-family:  "Nunito", sans-serif;
-    margin: 0 32px;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
 }
 
-main {
-    max-width: 900px;
-    margin-inline: auto;
+/* Anime-inspired Header */
+.header {
+  background: linear-gradient(135deg, var(--bg-darker), var(--bg-dark));
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--primary);
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
-* {
-    box-sizing: border-box;
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
 }
 
+.header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 0;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Main Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Expense Tracker Layout */
 .expense-tracker {
-    display: flex;
-    gap: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
 }
 
+@media (max-width: 768px) {
+  .expense-tracker {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form Styles - Anime-inspired */
 .expense-form {
-    width: 100%;
+  padding: 2rem;
+  background: var(--card-bg);
+  position: relative;
 }
 
-.expense-table {
-    width: 100%;
-    border-collapse: collapse;
-    align-self: flex-start;
-}
-
-.expense-table select {
-    font: inherit;
-    width: 100%;
-    border: none;
-    outline: none;
-}
-
-.amount-column div {
-    display: flex;
-}
-
-.amount-column span {
-    margin-right: 6px;
-}
-
-.arrow {
-    transition: transform 0.2s ease-in-out;
-    cursor: pointer;
-}
-
-.up-arrow {
-    margin-left: auto;
-}
-
-.up-arrow:active {
-    transform: translateY(-2px);
-}
-
-.down-arrow {
-    margin-left: 6px;
-}
-
-.down-arrow:active {
-    transform: translateY(2px);
-}
-
-.expense-table th,
-.expense-table td {
-    border: 1px solid #444;
-    text-align: left;
-    padding: 4px 8px;
+.expense-form::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: linear-gradient(to bottom, 
+    transparent, 
+    var(--primary), 
+    transparent);
 }
 
 .input-container {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 18px;
-    position: relative;
+  margin-bottom: 1.5rem;
+  position: relative;
 }
 
 .input-container label {
-    font-size: 14px;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.input-container input {
-    height: 28px;
-    font-family: inherit;
+.input-container input,
+.input-container select {
+  width: 100%;
+  padding: 12px 15px;
+  background: var(--bg-darker);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: var(--transition);
 }
 
-#category {
-    height: 28px;
-    font-family: inherit;
+.input-container input:focus,
+.input-container select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(0, 206, 255, 0.2);
 }
 
 .add-btn {
-    width: 100%;
-    height: 32px;
-    font-size: 18px;
-    font-family: inherit;
-    margin-top: 8px;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
 }
 
+.add-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent);
+  transition: var(--transition);
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 77, 137, 0.4);
+}
+
+.add-btn:hover::before {
+  left: 100%;
+}
+
+/* Table Styles - Neon Anime-inspired */
+.expense-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--card-bg);
+  position: relative;
+}
+
+.expense-table th {
+  background: linear-gradient(135deg, var(--bg-darker), var(--card-bg));
+  color: var(--accent);
+  font-weight: 600;
+  padding: 16px;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  border-bottom: 2px solid var(--primary);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.expense-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.expense-table tr:last-child td {
+  border-bottom: none;
+}
+
+.expense-table tr:hover {
+  background-color: var(--hover-bg);
+}
+
+.expense-table select {
+  background: var(--bg-darker);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-weight: 500;
+  font-family: inherit;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.expense-table select:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* Improved Arrow Buttons */
+.amount-column div {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Adds consistent spacing */
+}
+
+.arrow-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 4px;
+  border-radius: 4px;
+  background: rgba(0, 206, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.up-arrow {
+  margin-bottom: 2px; /* Space between arrows */
+}
+
+.down-arrow {
+  margin-top: 2px;
+}
+
+.arrow:hover {
+  background: rgba(0, 206, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.arrow svg {
+  width: 12px;
+  height: 12px;
+  fill: var(--accent);
+}
+
+/* Active sorting indicator */
+.arrow.active {
+  background: var(--accent);
+}
+
+.arrow.active svg {
+  fill: var(--bg-dark);
+}
+
+/* Clear sort button */
+.clear-sort {
+  color: var(--primary);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.8rem;
+  margin-left: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(255, 77, 137, 0.1);
+}
+
+.clear-sort:hover {
+  background: rgba(255, 77, 137, 0.3);
+  color: var(--accent);
+}
+
+.total-row {
+  font-weight: 700;
+  background: rgba(108, 92, 231, 0.1);
+  color: var(--accent);
+}
+
+.total-row th {
+  border-bottom: none !important;
+}
+
+/* Context Menu - Neon Style */
 .context-menu {
-    background-color: white;
-    border: 1px solid;
-    position: absolute;
-   
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  background: var(--card-bg);
+  border-radius: 6px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  overflow: hidden;
+  min-width: 180px;
+  border: 1px solid var(--primary);
 }
 
 .context-menu div {
-    padding: 2px 8px;
-    cursor: pointer;
-    font-weight: 600;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+  color: var(--text-primary);
 }
 
 .context-menu div:hover {
-    background-color: #ddd;
+  background: var(--primary);
+  color: white;
 }
 
-.err{
-    font-size: 12px;
-    color: red;
-    position: absolute;
-    top: 80%;
-} 
-.clear-sort{
-    cursor: pointer;
+.context-menu div:first-child {
+  border-bottom: 1px solid var(--border-color);
 }
 
-@media (max-width: 900px) {
-    body {
-        margin-inline: 16px;
-    }
+/* Error Styles */
+.err {
+  font-size: 0.8rem;
+  color: var(--danger);
+  margin-top: 4px;
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  font-weight: 500;
+}
 
-    .expense-tracker {
-        flex-direction: column;
-    }
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.expense-tracker {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0, 206, 255, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(0, 206, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 206, 255, 0); }
+}
+
+.add-btn:active {
+  animation: pulse 0.5s;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .expense-tracker {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  
+  .expense-form {
+    padding: 1.5rem;
+  }
+  
+  .expense-table th,
+  .expense-table td {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
 }
